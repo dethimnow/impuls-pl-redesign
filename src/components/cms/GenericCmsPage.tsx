@@ -51,7 +51,9 @@ export function GenericCmsPage({ kind, data }: { kind: "page" | "post"; data: Wp
         </div>
       ) : null}
 
-      <WpHtml html={data.html} />
+      <div className="cms-legacy-surface -mx-2 rounded-xl px-2 sm:mx-0 sm:rounded-2xl sm:border sm:border-[#e1e2e7]/60 sm:bg-[#fafbfd] sm:p-6 lg:p-8">
+        <WpHtml html={data.html} />
+      </div>
 
       <div className="mt-12 flex flex-wrap gap-4 border-t border-[#e1e2e7] pt-8">
         <Link

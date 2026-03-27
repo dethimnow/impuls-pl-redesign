@@ -45,3 +45,143 @@ body {
     "GRAD" 0,
     "opsz" 24;
 }
+
+@keyframes gallery-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.gallery-marquee {
+  animation: gallery-marquee 55s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-marquee {
+    animation: none;
+  }
+}
+
+/**
+ * Przebudowa legacy Avada / Fusion (zielone boksy, stare taby) na neutralny UI 2026.
+ */
+.cms-legacy-surface .fusion-fullwidth,
+.cms-legacy-surface .fusion-row {
+  background: transparent !important;
+  border: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
+}
+
+.cms-legacy-surface .fusion-tabs {
+  border: none !important;
+}
+
+.cms-legacy-surface .fusion-tabs .nav-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  border: none !important;
+  margin: 0 0 1.25rem 0 !important;
+  padding: 0 !important;
+}
+
+.cms-legacy-surface .fusion-tabs .nav-tabs li {
+  float: none !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+.cms-legacy-surface .fusion-tabs .nav-tabs li a {
+  display: inline-block !important;
+  border-radius: 9999px !important;
+  border: 1px solid #e1e2e7 !important;
+  background: #fff !important;
+  color: #002045 !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  box-shadow: 0 1px 2px rgba(0, 32, 69, 0.04) !important;
+}
+
+.cms-legacy-surface .fusion-tabs .nav-tabs li.active a,
+.cms-legacy-surface .fusion-tabs .nav-tabs li a:hover {
+  background: #002045 !important;
+  color: #fff !important;
+  border-color: #002045 !important;
+}
+
+.cms-legacy-surface .tab-content,
+.cms-legacy-surface .tab-pane,
+.cms-legacy-surface .fusion-tab-content {
+  background: #f8f9fe !important;
+  border: 1px solid #e1e2e7 !important;
+  border-radius: 1rem !important;
+  padding: 1.25rem 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.cms-legacy-surface .fusion-tab-pane,
+.cms-legacy-surface .post-content {
+  background: transparent !important;
+}
+
+.cms-legacy-surface .fusion-clearfix {
+  display: none;
+}
+
+.cms-legacy-surface ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0.5rem 0 0 0 !important;
+}
+
+.cms-legacy-surface ul li {
+  margin-bottom: 0.35rem !important;
+  padding: 0.35rem 0 !important;
+  border-bottom: 1px solid #eceef3 !important;
+}
+
+.cms-legacy-surface ul li:last-child {
+  border-bottom: none !important;
+}
+
+.cms-legacy-surface a {
+  color: #006e2e !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.cms-legacy-surface a:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+.cms-legacy-surface h2,
+.cms-legacy-surface h3,
+.cms-legacy-surface h4 {
+  color: #002045 !important;
+  font-weight: 700 !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.cms-legacy-surface p {
+  color: #43474e !important;
+  line-height: 1.65 !important;
+}
+
+.cms-legacy-surface [style*="background-color:rgba(50,150,77"],
+.cms-legacy-surface [style*="background-color: rgba(50,150,77"],
+.cms-legacy-surface [style*="#32964d"] {
+  background: #f8f9fe !important;
+  border: 1px solid #e1e2e7 !important;
+  border-radius: 0.75rem !important;
+}

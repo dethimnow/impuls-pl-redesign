@@ -76,8 +76,8 @@ export function ContactPageView({ html }: { html: string }) {
         ))}
       </div>
 
-      <div className="rounded-xl border border-dashed border-[#c4c6cf] bg-[#f8f9fe]/80 p-6 lg:p-8">
-        <h3 className="mb-4 text-lg font-bold text-[#002045]">Formularze i szczegóły</h3>
+      <div className="cms-legacy-surface rounded-2xl border border-[#e1e2e7] bg-white p-6 shadow-inner lg:p-10">
+        <h3 className="mb-6 text-lg font-bold text-[#002045]">Działy i dane rejestrowe</h3>
         <WpHtml html={html} />
       </div>
     </SubpageLayout>

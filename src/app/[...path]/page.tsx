@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContactPageView } from "@/components/cms/ContactPageView";
+import { DocumentsPageView } from "@/components/cms/DocumentsPageView";
 import { GenericCmsPage } from "@/components/cms/GenericCmsPage";
 import { NewsArchive } from "@/components/cms/NewsArchive";
+import { ProductsCatalogPage } from "@/components/cms/ProductsCatalogPage";
 import { TipsArchive } from "@/components/cms/TipsArchive";
 import { LOGO_PATH } from "@/lib/branding";
 import { allStaticPaths, getPageOrPost, resolvePath, site } from "@/lib/site";
@@ -25,8 +27,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const hit = getPageOrPost(pathname);
   if (!hit) return { title: "Nie znaleziono" };
   const title = stripTitle(hit.data.title);
-  const desc =
+  let desc: string | undefined =
     "excerpt" in hit.data && hit.data.excerpt ? hit.data.excerpt.slice(0, 160) : undefined;
+  if (pathname === "/oferta/produkty") {
+    desc =
+      "Katalog produktów IMPULS: chemia profesjonalna i gospodarcza, kosmetyki. Wyszukiwarka i linki do kart produktów.";
+  }
+  if (pathname === "/dokumenty-do-pobrania" || pathname === "/pelna-lista-plikow-do-pobrania") {
+    desc =
+      "Karty charakterystyki, arkusze danych, katalogi produktów IMPULS — dokumenty do pobrania w formacie PDF.";
+  }
   const ogImage = hit.kind === "post" ? (hit.data.image ?? LOGO_PATH) : LOGO_PATH;
   return {
     title,
@@ -52,6 +62,14 @@ export default async function CmsPage({ params }: Props) {
 
   if (pathname === "/kacik-porad") {
     return <TipsArchive items={site.lists.tips} />;
+  }
+
+  if (pathname === "/oferta/produkty") {
+    return <ProductsCatalogPage />;
+  }
+
+  if (pathname === "/dokumenty-do-pobrania" || pathname === "/pelna-lista-plikow-do-pobrania") {
+    return <DocumentsPageView title={stripTitle(hit.data.title)} html={hit.data.html} />;
   }
 
   if (pathname === "/kontakt") {
