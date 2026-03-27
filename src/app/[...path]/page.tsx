@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { AboutPageView } from "@/components/cms/AboutPageView";
 import { ContactPageView } from "@/components/cms/ContactPageView";
 import { DocumentsPageView } from "@/components/cms/DocumentsPageView";
 import { GenericCmsPage } from "@/components/cms/GenericCmsPage";
@@ -32,6 +33,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (pathname === "/oferta/produkty") {
     desc =
       "Katalog produktów IMPULS: chemia profesjonalna i gospodarcza, kosmetyki. Wyszukiwarka i linki do kart produktów.";
+  }
+  if (pathname === "/o-firmie") {
+    desc =
+      "IMPULS Gdańsk — ponad 25 lat doświadczenia w produkcji preparatów do mycia i dezynfekcji, laboratorium B+R i obsługa branż rolno-spożywczej, medycznej i wojskowej.";
   }
   if (pathname === "/dokumenty-do-pobrania" || pathname === "/pelna-lista-plikow-do-pobrania") {
     desc =
@@ -74,6 +79,10 @@ export default async function CmsPage({ params }: Props) {
 
   if (pathname === "/kontakt") {
     return <ContactPageView html={hit.data.html} />;
+  }
+
+  if (pathname === "/o-firmie") {
+    return <AboutPageView html={hit.data.html} title={stripTitle(hit.data.title)} />;
   }
 
   return <GenericCmsPage kind={hit.kind} data={hit.data} />;

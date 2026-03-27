@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { HeroWithMedia } from "@/components/home/HeroWithMedia";
 import { HomeGalleryMarquee } from "@/components/home/HomeGalleryMarquee";
-import { products } from "@/lib/products";
+import { HOME_HERO_GALLERY_PATHS } from "@/lib/homeHeroGallery";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -16,15 +16,7 @@ export default function HomePage() {
   const [n1, n2] = site.lists.news;
   const tips = site.lists.tips[0];
 
-  const galleryUrls = Array.from(
-    new Set(
-      [
-        ...products.map((p) => p.image).filter(Boolean),
-        site.heroImage,
-        "/wp-mirror/uploads/2018/10/mikro.jpg",
-      ] as string[],
-    ),
-  ).slice(0, 22);
+  const galleryUrls = Array.from(new Set([...HOME_HERO_GALLERY_PATHS, site.heroImage]));
 
   return (
     <main>

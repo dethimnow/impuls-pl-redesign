@@ -56,7 +56,14 @@ body {
 }
 
 .gallery-marquee {
-  animation: gallery-marquee 55s linear infinite;
+  animation: gallery-marquee 70s linear infinite;
+}
+
+.about-tail-prose p {
+  text-align: justify;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-on-surface-variant);
 }
 
 @media (prefers-reduced-motion: reduce) {
