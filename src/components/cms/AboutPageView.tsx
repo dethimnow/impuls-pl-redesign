@@ -58,7 +58,7 @@ export function AboutPageView({ html, title }: { html: string; title: string }) 
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[#e1e2e7]/80 bg-white shadow-[0_24px_80px_rgba(0,32,69,0.1)] lg:aspect-[3648/2484]">
               <Image
-                src={encodeURI(imgSrc)}
+                src={imgSrc}
                 alt="Zakład IMPULS — widok z lotu ptaka"
                 fill
                 className="object-cover"

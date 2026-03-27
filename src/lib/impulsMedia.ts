@@ -4,8 +4,12 @@
  */
 export function impulsWpContentSrc(url: string | null | undefined): string | null {
   if (!url) return null;
-  const u = url.trim();
-  if (u.startsWith("/cdn-wp/") || u.startsWith("/wp-mirror/") || u.startsWith("/images/")) {
+  let u = url.trim();
+  /** Lokalny wp-mirror nie jest na Vercel — ten sam content przez rewrite /cdn-wp/ → impuls.pl */
+  if (u.startsWith("/wp-mirror/")) {
+    u = `/cdn-wp/${u.slice("/wp-mirror/".length)}`;
+  }
+  if (u.startsWith("/cdn-wp/") || u.startsWith("/images/")) {
     return u.includes("%") ? u : encodeURI(u);
   }
   if (u.startsWith("/")) return encodeURI(u);
