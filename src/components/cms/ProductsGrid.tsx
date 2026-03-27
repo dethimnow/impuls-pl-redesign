@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { impulsWpContentSrc } from "@/lib/impulsMedia";
 import type { ProductItem } from "@/lib/products";
 
 function cleanTitle(raw: string) {
@@ -49,7 +50,7 @@ export function ProductsGrid({ items }: { items: ProductItem[] }) {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filtered.map((p) => {
-          const src = p.image;
+          const src = impulsWpContentSrc(p.image);
           const title = cleanTitle(p.title);
           return (
             <a

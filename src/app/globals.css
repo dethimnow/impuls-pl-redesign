@@ -65,6 +65,15 @@ body {
   }
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /**
  * Przebudowa legacy Avada / Fusion (zielone boksy, stare taby) na neutralny UI 2026.
  */
@@ -104,18 +113,35 @@ body {
   border: 1px solid #e1e2e7 !important;
   background: #fff !important;
   color: #002045 !important;
+  -webkit-text-fill-color: #002045 !important;
   padding: 0.5rem 1rem !important;
   font-size: 0.8125rem !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   box-shadow: 0 1px 2px rgba(0, 32, 69, 0.04) !important;
+  line-height: 1.3 !important;
+  max-width: 100% !important;
 }
 
-.cms-legacy-surface .fusion-tabs .nav-tabs li.active a,
-.cms-legacy-surface .fusion-tabs .nav-tabs li a:hover {
+.cms-legacy-surface .fusion-tabs .nav-tabs li.active a {
   background: #002045 !important;
   color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
   border-color: #002045 !important;
+}
+
+.cms-legacy-surface .fusion-tabs .nav-tabs li.active a * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cms-legacy-surface .fusion-tabs .nav-tabs li:not(.active) a:hover {
+    background: #002045 !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    border-color: #002045 !important;
+  }
 }
 
 .cms-legacy-surface .tab-content,
@@ -153,15 +179,27 @@ body {
   border-bottom: none !important;
 }
 
-.cms-legacy-surface a {
+/* Linki w treści (nie w pasku zakładek Fusion) */
+.cms-legacy-surface .tab-content a,
+.cms-legacy-surface .tab-pane a:not(.fusion-tabs .nav-tabs a),
+.cms-legacy-surface .fusion-builder-row a:not(.fusion-tabs .nav-tabs a),
+.cms-legacy-surface .post-content a,
+.cms-legacy-surface .fusion-text a {
   color: #006e2e !important;
+  -webkit-text-fill-color: #006e2e !important;
   font-weight: 600 !important;
   text-decoration: none !important;
 }
 
-.cms-legacy-surface a:hover {
-  text-decoration: underline !important;
-  text-underline-offset: 3px !important;
+@media (hover: hover) and (pointer: fine) {
+  .cms-legacy-surface .tab-content a:hover,
+  .cms-legacy-surface .tab-pane a:hover,
+  .cms-legacy-surface .fusion-builder-row a:hover,
+  .cms-legacy-surface .post-content a:hover,
+  .cms-legacy-surface .fusion-text a:hover {
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+  }
 }
 
 .cms-legacy-surface h2,

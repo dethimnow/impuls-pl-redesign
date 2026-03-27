@@ -1,22 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LOGO_PATH } from "@/lib/branding";
+import { MAIN_NAV, MOBILE_QUICK_NAV } from "@/lib/navLinks";
 import { MobileNav } from "./MobileNav";
-
-const NAV: { href: string; label: string }[] = [
-  { href: "/oferta/produkty", label: "Produkty" },
-  { href: "/o-firmie", label: "O Firmie" },
-  { href: "/aktualnosci", label: "Aktualności" },
-  { href: "/oferta", label: "Oferta" },
-  { href: "/dotacje-ue", label: "Dotacje UE" },
-  { href: "/e-sklep", label: "E-sklep" },
-  { href: "/kacik-porad", label: "Kącik Porad" },
-  { href: "/kontakt", label: "Kontakt" },
-];
 
 export function SiteHeader() {
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-[#e1e2e7]/80 bg-white/80 shadow-[0_20px_40px_rgba(0,32,69,0.06)] backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 w-full border-b border-[#e1e2e7]/80 bg-white/95 shadow-[0_20px_40px_rgba(0,32,69,0.06)] backdrop-blur-xl">
       <div className="relative mx-auto flex h-20 max-w-screen-2xl items-center justify-between gap-4 px-6 lg:h-24 lg:px-16">
         <Link href="/" className="logo-container shrink-0">
           <Image
@@ -29,14 +19,14 @@ export function SiteHeader() {
             unoptimized
           />
         </Link>
-        <div className="hidden xl:flex flex-1 items-center justify-center gap-6 text-sm font-medium tracking-tight text-slate-500">
-          {NAV.map(({ href, label }) => (
+        <div className="hidden flex-1 items-center justify-center gap-6 text-sm font-medium tracking-tight text-slate-500 xl:flex">
+          {MAIN_NAV.map(({ href, label }) => (
             <Link key={href} href={href} className="transition-colors hover:text-[#006e2e]">
               {label}
             </Link>
           ))}
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <MobileNav />
           <Link
             href="/oferta/produkty"
@@ -45,6 +35,17 @@ export function SiteHeader() {
             Szukaj produktów
           </Link>
         </div>
+      </div>
+      <div className="nav-quick-scroll no-scrollbar flex gap-2 overflow-x-auto border-t border-slate-200/90 bg-white px-6 py-2.5 xl:hidden lg:px-16">
+        {MOBILE_QUICK_NAV.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className="shrink-0 rounded-full border border-[#e1e2e7] bg-[#f8f9fe] px-3 py-1.5 text-xs font-semibold text-[#002045] active:bg-[#eceef3]"
+          >
+            {label}
+          </Link>
+        ))}
       </div>
     </nav>
   );

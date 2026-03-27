@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "impuls.pl", pathname: "/wp-content/**" },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/cdn-wp/:path*",
+        destination: "http://impuls.pl/wp-content/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

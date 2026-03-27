@@ -2,44 +2,49 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
-const LINKS: { href: string; label: string }[] = [
-  { href: "/oferta/produkty", label: "Produkty" },
-  { href: "/o-firmie", label: "O Firmie" },
-  { href: "/aktualnosci", label: "Aktualności" },
-  { href: "/oferta", label: "Oferta" },
-  { href: "/dotacje-ue", label: "Dotacje UE" },
-  { href: "/e-sklep", label: "E-sklep" },
-  { href: "/kacik-porad", label: "Kącik Porad" },
-  { href: "/kontakt", label: "Kontakt" },
-];
+import { MAIN_NAV } from "@/lib/navLinks";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="xl:hidden">
+    <div className="relative z-[200] xl:hidden">
       <button
         type="button"
-        className="rounded border border-[#c4c6cf] px-3 py-2 text-sm font-medium text-[#002045]"
+        className="rounded border border-[#c4c6cf] bg-white px-3 py-2 text-sm font-semibold text-[#002045]"
         aria-expanded={open}
+        aria-controls="mobile-nav-panel"
+        id="mobile-nav-btn"
         onClick={() => setOpen((o) => !o)}
       >
         Menu
       </button>
       {open ? (
-        <nav className="absolute left-4 right-4 top-full z-50 mt-2 flex flex-col gap-1 rounded-lg border border-[#e1e2e7] bg-white p-4 shadow-xl">
-          {LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="rounded px-3 py-2 text-sm text-slate-600 hover:bg-[#f2f3f9] hover:text-[#006e2e]"
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <>
+          <button
+            type="button"
+            className="fixed inset-0 z-[198] bg-[#002045]/20 lg:hidden"
+            aria-label="Zamknij menu"
+            onClick={() => setOpen(false)}
+          />
+          <nav
+            id="mobile-nav-panel"
+            role="navigation"
+            aria-labelledby="mobile-nav-btn"
+            className="absolute right-0 top-full z-[210] mt-2 flex max-h-[min(70vh,28rem)] w-[min(calc(100vw-1.5rem),18rem)] flex-col gap-0.5 overflow-y-auto rounded-xl border border-[#e1e2e7] bg-white p-2 shadow-[0_24px_48px_rgba(0,32,69,0.18)]"
+          >
+            {MAIN_NAV.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#002045] hover:bg-[#f2f3f9] active:bg-[#eceef3]"
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </>
       ) : null}
     </div>
   );

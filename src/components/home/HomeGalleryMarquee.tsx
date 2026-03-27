@@ -1,17 +1,23 @@
 "use client";
 
 import { useMemo } from "react";
-
-function cleanSrc(url: string) {
-  return url.replace(/^http:\/\//i, "https://");
-}
+import { impulsWpContentSrc } from "@/lib/impulsMedia";
 
 export function HomeGalleryMarquee({ imageUrls }: { imageUrls: string[] }) {
+  const resolved = useMemo(() => {
+    const out: string[] = [];
+    for (const raw of imageUrls) {
+      const s = impulsWpContentSrc(raw);
+      if (s) out.push(s);
+    }
+    return out;
+  }, [imageUrls]);
+
   const row = useMemo(() => {
-    const u = imageUrls.filter(Boolean);
+    const u = resolved.filter(Boolean);
     const base = u.length >= 6 ? u : [...u, ...u, ...u];
     return [...base, ...base];
-  }, [imageUrls]);
+  }, [resolved]);
 
   if (row.length === 0) return null;
 
@@ -27,14 +33,16 @@ export function HomeGalleryMarquee({ imageUrls }: { imageUrls: string[] }) {
         {row.map((src, i) => (
           <div
             key={`${src}-${i}`}
-            className="relative h-44 w-64 shrink-0 overflow-hidden rounded-xl border border-white/10 shadow-lg sm:h-52 sm:w-80"
+            className="relative h-44 w-64 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-[#1a2838] shadow-lg sm:h-52 sm:w-80"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={cleanSrc(src)}
+              src={src}
               alt=""
               className="h-full w-full object-cover transition duration-500 hover:scale-105"
               loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
             />
           </div>
         ))}
