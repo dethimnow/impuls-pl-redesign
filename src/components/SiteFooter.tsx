@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { LOGO_PATH } from "@/lib/branding";
+import { ContactTrigger } from "@/components/ContactTrigger";
 
 const DOCS: { href: string; label: string }[] = [
   { href: "/dokumenty-do-pobrania", label: "Karty Charakterystyki" },
@@ -19,7 +20,7 @@ export function SiteFooter() {
         <div>
           <div className="mb-6 inline-block rounded bg-white p-3">
             <Image
-              src={encodeURI(site.logoPath)}
+              src={LOGO_PATH}
               alt="P.I.W. IMPULS"
               width={158}
               height={77}
@@ -85,12 +86,9 @@ export function SiteFooter() {
               </a>
             </div>
             <p className="mb-4 text-[10px] uppercase tracking-widest text-slate-400">692 29 62</p>
-            <Link
-              href="/kontakt"
-              className="block w-full rounded bg-[#006e2e] py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition hover:bg-[#79db8a] hover:text-[#002109]"
-            >
+            <ContactTrigger className="block w-full rounded bg-[#006e2e] py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition hover:bg-[#79db8a] hover:text-[#002109]">
               Zadaj nam pytanie
-            </Link>
+            </ContactTrigger>
           </div>
         </div>
       </div>
