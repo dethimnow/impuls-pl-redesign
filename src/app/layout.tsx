@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { CookieBar } from "@/components/CookieBar";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -48,6 +49,7 @@ export default function RootLayout({
         {children}
         <SiteFooter />
         <CookieBar />
+        <Analytics />
       </body>
     </html>
   );
